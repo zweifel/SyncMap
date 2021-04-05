@@ -1,0 +1,34 @@
+
+The code here is the one used in the article "Continual General Chunking Problem and SyncMap" which can be accessed by the link below:
+https://arxiv.org/pdf/2006.07853.pdf
+Please refer to the article for details on the SyncMap and the continual chunking problem.
+
+First create a directory with the name "output_files" in the current directory.
+
+Then run the following:
+$python main.py problem_number output_filename
+
+where, output_filename is the name of the output file and problem_number is the number of the problem.
+Respectively, 
+1: Mixed Structures
+2: Fixed Chunks 
+3: Sequence 2
+4: Sequence 1
+5: Long Chunks
+6: Overlap 1
+7: Overlap 2
+
+For continual versions run the following:
+$python dynamic_main.py problem_number output_filename
+
+problem_number refers to the problems below:
+
+1: Continual Mixed
+2: Continual Fixed
+
+
+The default learning algorithm is set for SyncMap.
+For changing the method, uncomment the code between the following lines.
+VAE refers to the modified Word2Vec mentioned in the article.
+###### VAE #####
+###### VAE #####

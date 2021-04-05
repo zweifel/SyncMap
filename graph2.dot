@@ -1,0 +1,29 @@
+digraph causal
+{
+	a [label="1"]
+	b [label="3"]
+	c [label="2"]
+	d [label="3"]
+	e [label="1"]
+	f [label="2"]
+	g [label="3"]
+	h [label="2"]
+	i [label="1"]
+	a -> i [type=1];
+	a -> e
+	i -> e [type=1];
+	i -> a
+	e -> i
+	e -> a
+	e -> h
+	h -> c
+	c -> f
+	f -> g
+	g -> d
+	g -> b
+	d -> b
+	d -> g
+	b -> d
+	b -> g
+	b -> a
+}
