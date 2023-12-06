@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from keras.utils import to_categorical
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -18,7 +18,7 @@ class GraphWalkTest:
 		
 		self.output_size= self.G.number_of_nodes()
 			
-		self.A = nx.adj_matrix(self.G)
+		self.A = nx.adjacency_matrix(self.G)
 		self.A = self.A.todense()
 		self.A = np.array(self.A, dtype = np.float64)
 	
@@ -77,9 +77,9 @@ class GraphWalkTest:
 		
 		noise_intensity= 0
 		if self.previous_output_class is None or self.previous_output_class == self.output_class:
-			input_value = np_utils.to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity
+			input_value = to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity
 		else:
-			input_value = np_utils.to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity + np_utils.to_categorical(self.previous_output_class, self.output_size)*np.exp(-0.1*(self.time_counter+self.time_delay))
+			input_value = to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity + to_categorical(self.previous_output_class, self.output_size)*np.exp(-0.1*(self.time_counter+self.time_delay))
 		
 #		noise_intensity=0
 

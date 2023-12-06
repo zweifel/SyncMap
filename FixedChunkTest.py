@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from keras.utils import to_categorical
 import numpy as np
 import math
 import matplotlib.pyplot as plt

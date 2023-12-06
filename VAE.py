@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from keras.utils import to_categorical
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -8,6 +8,7 @@ from scipy.spatial import distance
 import tensorflow as tf
 from tensorflow.keras.layers import Input, LSTM, RepeatVector, Dense, Dropout
 from tensorflow.keras.models import Model
+import pickle
 
 class VAE:
 	
@@ -125,7 +126,7 @@ class VAE:
 	def createMap(self):
 		
 
-		all_possible_inputs = [np_utils.to_categorical(i, self.input_size) for i in range(self.input_size)]
+		all_possible_inputs = [to_categorical(i, self.input_size) for i in range(self.input_size)]
 		for i,a in enumerate(all_possible_inputs):
 			sample = a[None,:]
 			#print("a shape", a.shape)
@@ -208,7 +209,7 @@ class VAE:
 	def save(self, filename):
 		"""save class as self.name.txt"""
 		file = open(filename+'.txt','w')
-		file.write(cPickle.dumps(self.__dict__))
+		file.write(pickle.dumps(self.__dict__))
 		file.close()
 
 	def load(self, filename):
@@ -217,6 +218,6 @@ class VAE:
 		dataPickle = file.read()
 		file.close()
 
-		self.__dict__ = cPickle.loads(dataPickle)
+		self.__dict__ = pickle.loads(dataPickle)
 		
 
