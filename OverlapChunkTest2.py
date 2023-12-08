@@ -1,4 +1,4 @@
-from keras.utils import np_utils
+from keras.utils import to_categorical
 import numpy as np
 import math
 import matplotlib.pyplot as plt
@@ -70,11 +70,11 @@ class OverlapChunkTest2:
 				self.output_class = np.random.randint(10)
 
 		noise_intensity= 0
-#		input_value = np_utils.to_categorical(self.output_class, self.output_size) + np.random.randn(self.output_size)*noise_intensity
+#		input_value = to_categorical(self.output_class, self.output_size) + np.random.randn(self.output_size)*noise_intensity
 		if self.previous_output_class is None or self.previous_output_class == self.output_class:
-			input_value = np_utils.to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity
+			input_value = to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity
 		else:
-			input_value = np_utils.to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity + np_utils.to_categorical(self.previous_output_class, self.output_size)*np.exp(-0.1*(self.time_counter+self.time_delay))
+			input_value = to_categorical(self.output_class, self.output_size)*np.exp(-0.1*self.time_counter) + np.random.randn(self.output_size)*noise_intensity + to_categorical(self.previous_output_class, self.output_size)*np.exp(-0.1*(self.time_counter+self.time_delay))
 
 		return input_value
 	

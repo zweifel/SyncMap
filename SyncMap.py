@@ -2,13 +2,14 @@
 # Code developed by Danilo Vasconcellos Vargas @ Kyushu University / The University of Tokyo
 ################################################################################ 
 
-from keras.utils import np_utils
+from keras.utils import to_categorical
 import numpy as np
 import math
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.cluster import DBSCAN
 from scipy.spatial import distance
+import pickle
 
 class SyncMap:
 	
@@ -234,7 +235,7 @@ class SyncMap:
 	def save(self, filename):
 		"""save class as self.name.txt"""
 		file = open(filename+'.txt','w')
-		file.write(cPickle.dumps(self.__dict__))
+		file.write(pickle.dumps(self.__dict__))
 		file.close()
 
 	def load(self, filename):
@@ -243,6 +244,6 @@ class SyncMap:
 		dataPickle = file.read()
 		file.close()
 
-		self.__dict__ = cPickle.loads(dataPickle)
+		self.__dict__ = pickle.loads(dataPickle)
 		
 
